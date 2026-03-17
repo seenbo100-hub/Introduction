@@ -490,9 +490,35 @@
       padding: 36px;
       backdrop-filter: blur(8px);
       transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
     }
 
     .motto-card:hover { background: rgba(255,255,255,0.09); }
+
+    /* ── VIDEO OVERLAY ── */
+    .motto-video-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 22px;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .motto-card--video:hover .motto-video-bg {
+      opacity: 0.22;
+    }
+
+    .motto-card--video .motto-q,
+    .motto-card--video .motto-body {
+      position: relative;
+      z-index: 1;
+    }
 
     .motto-q {
       font-size: 1.1rem;
@@ -590,8 +616,120 @@
 
     footer strong { color: #38BDF8; }
 
+    /* ── SIDE NAV ── */
+    .side-nav {
+      position: fixed;
+      right: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      background: rgba(8, 18, 34, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 22px;
+      padding: 22px 14px 22px 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      gap: 0;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.35);
+    }
+
+    .side-nav::before {
+      content: '';
+      position: absolute;
+      left: 22px;
+      top: 38px;
+      bottom: 38px;
+      width: 1.5px;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(255,255,255,0.12) 15%,
+        rgba(255,255,255,0.12) 85%,
+        transparent
+      );
+    }
+
+    .side-nav-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 4px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .side-nav-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.22);
+      transition: background 0.3s ease, width 0.3s ease, height 0.3s ease, box-shadow 0.3s ease;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .side-nav-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      transition: color 0.3s ease, opacity 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .side-nav-item:hover .side-nav-dot {
+      background: rgba(255,255,255,0.65);
+    }
+
+    .side-nav-item:hover .side-nav-label {
+      color: rgba(255,255,255,0.85);
+    }
+
+    .side-nav-item.active .side-nav-dot {
+      background: #38BDF8;
+      width: 11px;
+      height: 11px;
+      box-shadow: 0 0 0 3px rgba(56,189,248,0.2), 0 0 14px rgba(56,189,248,0.55);
+    }
+
+    .side-nav-item.active .side-nav-label {
+      color: #38BDF8;
+    }
+
     /* ── RESPONSIVE ── */
+    .side-nav-ship {
+      position: absolute;
+      left: 9px;
+      top: 0;
+      z-index: 10;
+      pointer-events: none;
+      transition: top 0.72s cubic-bezier(0.34, 1.15, 0.64, 1);
+      transform-origin: center bottom;
+      filter: drop-shadow(0 2px 6px rgba(56, 189, 248, 0.55));
+    }
+
+    @keyframes shipRock {
+      0%   { transform: rotate(0deg) translateX(0px); }
+      18%  { transform: rotate(-16deg) translateX(-2px); }
+      38%  { transform: rotate(16deg) translateX(2px); }
+      56%  { transform: rotate(-9deg) translateX(-1px); }
+      74%  { transform: rotate(6deg) translateX(1px); }
+      88%  { transform: rotate(-2deg); }
+      100% { transform: rotate(0deg) translateX(0px); }
+    }
+
+    .side-nav-ship.sailing {
+      animation: shipRock 0.72s ease-in-out;
+    }
+
     @media (max-width: 768px) {
+      .side-nav { display: none; }
       .about-grid    { grid-template-columns: 1fr; gap: 32px; }
       .ls-grid       { grid-template-columns: 1fr; }
       .motto-grid    { grid-template-columns: 1fr; }
@@ -795,18 +933,18 @@
     </p>
   </div>
 
-  <div class="scroll-hint">
+  <a href="#about" class="scroll-hint">
     <span>Scroll</span>
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
       <path d="M9 3v12M3 9l6 6 6-6" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
     </svg>
-  </div>
+  </a>
 
 </section>
 
 
 <!-- ═══════════════════════════════ ABOUT ═══════════════════════════════ -->
-<section class="about">
+<section class="about" id="about">
   <div class="container">
     <div class="about-grid">
 
@@ -845,7 +983,7 @@
 
 
 <!-- ═══════════════════════════════ CAREER ═══════════════════════════════ -->
-<section class="career">
+<section class="career" id="career">
   <div class="container">
     <p class="sec-label">Career</p>
     <h2 class="sec-title">物流 × グローバルの激闘録</h2>
@@ -1082,7 +1220,7 @@
 
 
 <!-- ═══════════════════════════════ PRINCIPLES ═══════════════════════════════ -->
-<section class="principles">
+<section class="principles" id="principles">
   <div class="container">
     <p class="sec-label">Principles</p>
     <h2 class="sec-title">仕事の美学</h2>
@@ -1125,7 +1263,7 @@
 
 
 <!-- ═══════════════════════════════ LIFESTYLE ═══════════════════════════════ -->
-<section class="lifestyle">
+<section class="lifestyle" id="lifestyle">
   <div class="container">
     <p class="sec-label">Lifestyle</p>
     <h2 class="sec-title">日々の生活で心掛けていること</h2>
@@ -1159,19 +1297,26 @@
 
 
 <!-- ═══════════════════════════════ MOTTO ═══════════════════════════════ -->
-<section class="motto">
+<section class="motto" id="motto">
   <div class="container">
     <p class="sec-label">Motto</p>
     <h2 class="sec-title">人生の羅針盤</h2>
 
     <div class="motto-grid">
 
-      <div class="motto-card">
+      <div class="motto-card motto-card--video">
+        <!-- ↓ ここのファイル名を実際のmp4ファイル名に変更してください -->
+        <video class="motto-video-bg" id="mottoVideo" muted loop playsinline preload="none">
+          <source src="runnning.mp4" type="video/mp4">
+        </video>
         <div class="motto-q">「心に愛が無ければ、スーパーヒーローじゃないのさ」</div>
         <p class="motto-body">キン肉マンOPより。物流という「世界を繋ぐ」仕事への誇りと、目の前の相手に対する誠実さを忘れない。今年、6年ぶりに彼女ができました笑。公私共に心に愛を持ちます。</p>
       </div>
 
-      <div class="motto-card">
+      <div class="motto-card motto-card--video" id="mottoCardRight">
+        <video class="motto-video-bg" id="mottoVideoRight" muted loop playsinline preload="none">
+          <source src="Kilimanjaro.mp4" type="video/mp4">
+        </video>
         <div class="motto-q">「Die with Zero」</div>
         <p class="motto-body">Bill Perkins著。後悔しないお金の使い方、記憶の配当の大切さ——私はZeroで死にたい。2026年は、キリマンジャロ登頂に挑戦予定。記憶の配当を最大化するために、体と金を惜しみなく投資します。</p>
       </div>
@@ -1182,7 +1327,7 @@
 
 
 <!-- ═══════════════════════════════ TALK ═══════════════════════════════ -->
-<section class="talk">
+<section class="talk" id="talk">
   <div class="container">
     <p class="sec-label">Talk with Me</p>
     <h2 class="sec-title">こんな話ができます</h2>
@@ -1215,7 +1360,7 @@
 
 
 <!-- ═══════════════════════════════ MISSION ═══════════════════════════════ -->
-<section class="mission">
+<section class="mission" id="mission">
   <div class="container">
     <p class="sec-label">Mission</p>
     <h2 class="sec-title">AI Driven School</h2>
@@ -1239,11 +1384,174 @@
 </section>
 
 
+<!-- ═══════════════════════════════ SIDE NAV ═══════════════════════════════ -->
+<nav class="side-nav" id="sideNav" aria-label="Page navigation">
+
+  <!-- Ship indicator -->
+  <div class="side-nav-ship" id="sideNavShip" aria-hidden="true">
+    <svg viewBox="0 0 34 22" width="34" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- water shimmer -->
+      <path d="M0,17 Q8,19.5 17,17 Q26,14.5 34,17 L34,22 L0,22 Z" fill="#0EA5E9" opacity="0.25"/>
+      <!-- hull -->
+      <path d="M4,12 L30,12 L26,18 L8,18 Z" fill="#38BDF8"/>
+      <!-- cabin body -->
+      <rect x="12" y="6.5" width="11" height="5.5" rx="2" fill="#0284C7"/>
+      <!-- bridge top -->
+      <rect x="15" y="2.5" width="6" height="4" rx="1.5" fill="#0C4A6E"/>
+      <!-- chimney -->
+      <rect x="18.5" y="0.5" width="3" height="3" rx="1" fill="#1E293B"/>
+      <!-- smoke -->
+      <circle cx="20" cy="0" r="1.2" fill="rgba(200,220,240,0.5)"/>
+      <!-- portholes -->
+      <circle cx="9"  cy="14.5" r="1.8" fill="white" opacity="0.55"/>
+      <circle cx="15" cy="14.5" r="1.8" fill="white" opacity="0.55"/>
+      <circle cx="21" cy="14.5" r="1.8" fill="white" opacity="0.55"/>
+      <!-- bow wave -->
+      <path d="M27,16 Q31,13.5 34,15" stroke="#7DD3FC" stroke-width="1.6" stroke-linecap="round"/>
+      <!-- stern wake -->
+      <path d="M7,17 Q3,18.5 0,17.5" stroke="#BAE6FD" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+    </svg>
+  </div>
+
+  <a class="side-nav-item" href="#about" data-target="about">
+    <span class="side-nav-dot"></span>
+    <span class="side-nav-label">About</span>
+  </a>
+  <a class="side-nav-item" href="#career" data-target="career">
+    <span class="side-nav-dot"></span>
+    <span class="side-nav-label">Career</span>
+  </a>
+  <a class="side-nav-item" href="#principles" data-target="principles">
+    <span class="side-nav-dot"></span>
+    <span class="side-nav-label">Principles</span>
+  </a>
+  <a class="side-nav-item" href="#lifestyle" data-target="lifestyle">
+    <span class="side-nav-dot"></span>
+    <span class="side-nav-label">Lifestyle</span>
+  </a>
+  <a class="side-nav-item" href="#motto" data-target="motto">
+    <span class="side-nav-dot"></span>
+    <span class="side-nav-label">Motto</span>
+  </a>
+  <a class="side-nav-item" href="#talk" data-target="talk">
+    <span class="side-nav-dot"></span>
+    <span class="side-nav-label">Talk With Me</span>
+  </a>
+  <a class="side-nav-item" href="#mission" data-target="mission">
+    <span class="side-nav-dot"></span>
+    <span class="side-nav-label">Mission</span>
+  </a>
+</nav>
+
 <!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
 <footer>
   <p><strong>新保 恵太 / Keita Shimbo</strong> &nbsp;·&nbsp; 物流 × グローバル × AI</p>
   <p style="margin-top: 8px; font-size: 0.75rem;">Nairobi, Kenya · 2026</p>
 </footer>
+
+
+<script>
+  (function () {
+    const navItems  = document.querySelectorAll('.side-nav-item');
+    const sections  = ['about','career','principles','lifestyle','motto','talk','mission'];
+    const sideNav   = document.getElementById('sideNav');
+    const ship      = document.getElementById('sideNavShip');
+
+    let activeSection = null;
+    let navVisible    = false;
+
+    /* ── Ship position ── */
+    function positionShip(targetId, animate) {
+      if (!ship || !sideNav || !targetId) return;
+      var item = sideNav.querySelector('[data-target="' + targetId + '"]');
+      if (!item) return;
+
+      var dot     = item.querySelector('.side-nav-dot');
+      var navRect = sideNav.getBoundingClientRect();
+      var dotRect = dot.getBoundingClientRect();
+      var newTop  = dotRect.top - navRect.top + dotRect.height / 2 - ship.offsetHeight / 2;
+
+      if (animate) {
+        ship.classList.remove('sailing');
+        void ship.offsetWidth; /* force reflow so animation restarts */
+        ship.classList.add('sailing');
+        setTimeout(function () { ship.classList.remove('sailing'); }, 780);
+      }
+      ship.style.top = newTop + 'px';
+    }
+
+    /* ── Active section ── */
+    function setActive(id) {
+      if (id === activeSection) return;
+      var prev    = activeSection;
+      activeSection = id;
+
+      navItems.forEach(function (item) {
+        item.classList.toggle('active', item.dataset.target === id);
+      });
+
+      /* Animate ship only when nav is already visible and it's not the first placement */
+      positionShip(id, navVisible && prev !== null);
+    }
+
+    /* ── Section observer ── */
+    var sectionObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
+
+    sections.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) sectionObserver.observe(el);
+    });
+
+    /* ── Hero / nav visibility observer ── */
+    var hero = document.querySelector('.hero');
+
+    var heroObserver = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) {
+        navVisible = false;
+        sideNav.style.opacity = '0';
+        sideNav.style.pointerEvents = 'none';
+      } else {
+        navVisible = true;
+        sideNav.style.opacity = '1';
+        sideNav.style.pointerEvents = 'auto';
+        /* Snap ship to current position without animation on first reveal */
+        positionShip(activeSection, false);
+      }
+    }, { threshold: 0.1 });
+
+    if (hero) heroObserver.observe(hero);
+
+    sideNav.style.transition = 'opacity 0.4s ease';
+    sideNav.style.opacity    = '0';
+    sideNav.style.pointerEvents = 'none';
+  })();
+
+  /* ── Motto videos: play only on hover ── */
+  (function () {
+    var pairs = [
+      { cardId: null,            cardSel: '.motto-card--video', videoId: 'mottoVideo' },
+      { cardId: 'mottoCardRight', cardSel: null,               videoId: 'mottoVideoRight' }
+    ];
+
+    pairs.forEach(function (p) {
+      var card  = p.cardId ? document.getElementById(p.cardId) : document.querySelector(p.cardSel);
+      var video = document.getElementById(p.videoId);
+      if (!card || !video) return;
+
+      card.addEventListener('mouseenter', function () {
+        video.play().catch(function () {});
+      });
+      card.addEventListener('mouseleave', function () {
+        video.pause();
+        video.currentTime = 0;
+      });
+    });
+  })();
+</script>
 
 </body>
 </html>
