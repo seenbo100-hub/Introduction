@@ -578,10 +578,36 @@
     }
 
     .mission-card {
+      position: relative;
+      overflow: hidden;
       background: linear-gradient(140deg, #EFF6FF, #DBEAFE);
       border-radius: 20px;
       padding: 36px;
       border: 1px solid #BFDBFE;
+    }
+
+    .mission-video-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .mission-card:hover .mission-video-bg {
+      opacity: 0.25;
+    }
+
+    .mission-card .mission-num,
+    .mission-card .mission-title,
+    .mission-card .mission-desc {
+      position: relative;
+      z-index: 1;
     }
 
     .mission-num {
@@ -1367,7 +1393,10 @@
 
     <div class="mission-grid">
 
-      <div class="mission-card">
+      <div class="mission-card" id="missionCardSkill">
+        <video class="mission-video-bg" id="missionSkillVideo" muted loop playsinline preload="none">
+          <source src="runnning.mp4" type="video/mp4">
+        </video>
         <div class="mission-num">01</div>
         <h3 class="mission-title">スキルの合体技</h3>
         <p class="mission-desc">「物流実務」×「アフリカ・アジア経験」に「AI活用能力」を加え、どこでも通用する唯一無二の超人（人材）へ。</p>
@@ -1528,6 +1557,20 @@
     sideNav.style.transition = 'opacity 0.4s ease';
     sideNav.style.opacity    = '0';
     sideNav.style.pointerEvents = 'none';
+  })();
+
+  /* ── Mission skill card video: play only on hover ── */
+  (function () {
+    var card  = document.getElementById('missionCardSkill');
+    var video = document.getElementById('missionSkillVideo');
+    if (!card || !video) return;
+    card.addEventListener('mouseenter', function () {
+      video.play().catch(function () {});
+    });
+    card.addEventListener('mouseleave', function () {
+      video.pause();
+      video.currentTime = 0;
+    });
   })();
 
   /* ── Motto videos: play only on hover ── */
