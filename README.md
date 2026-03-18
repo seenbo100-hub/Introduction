@@ -4,7 +4,8 @@
 自己紹介ページのHTMLファイルをまとめています。
 
 ## 公開URL
-https://seenbo100-hub.github.io/Introduction/
+- GitHub Pages: https://seenbo100-hub.github.io/Introduction/
+- Surge（手動デプロイ）: https://keita-shimbo-self-intro.surge.sh
 
 ## 使用技術
 - HTML
