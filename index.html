@@ -155,7 +155,7 @@
       padding: 0 32px;
     }
 
-    section { padding: 84px 0; }
+    section { padding: 60px 0; }
 
     .sec-label {
       font-family: 'Montserrat', sans-serif;
@@ -171,7 +171,7 @@
       font-size: clamp(1.8rem, 3vw, 2.5rem);
       font-weight: 900;
       line-height: 1.2;
-      margin-bottom: 48px;
+      margin-bottom: 28px;
     }
 
     /* ── ABOUT ── */
@@ -180,9 +180,9 @@
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 48px;
+      gap: 32px;
       align-items: stretch;
-      margin-top: 32px;
+      margin-top: 20px;
     }
 
     .about-text p {
@@ -226,7 +226,7 @@
     .map-card {
       background: #FAF3E8;
       border-radius: 20px;
-      margin-bottom: 52px;
+      margin-bottom: 28px;
       border: 1px solid #E0CFA8;
       overflow: hidden;
     }
@@ -234,6 +234,7 @@
     .map-svg {
       width: 100%;
       height: auto;
+      max-height: 280px;
       display: block;
     }
 
@@ -388,13 +389,13 @@
     .principles-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 22px;
+      gap: 14px;
     }
 
     .p-card {
       background: var(--bg);
       border-radius: 20px;
-      padding: 30px;
+      padding: 20px 24px;
       border: 1px solid var(--border);
       transition: transform 0.2s, box-shadow 0.2s;
     }
@@ -405,15 +406,15 @@
     }
 
     .p-icon {
-      width: 46px; height: 46px;
-      border-radius: 13px;
+      width: 40px; height: 40px;
+      border-radius: 11px;
       background: linear-gradient(135deg, var(--accent), var(--sky-mid));
       display: flex;
       align-items: center;
       justify-content: center;
       color: #fff;
-      font-size: 1.1rem;
-      margin-bottom: 18px;
+      font-size: 1rem;
+      margin-bottom: 10px;
     }
 
     .p-title {
@@ -423,8 +424,8 @@
     }
 
     .p-desc {
-      font-size: 0.86rem;
-      line-height: 1.95;
+      font-size: 0.83rem;
+      line-height: 1.7;
       color: var(--muted);
     }
 
@@ -1436,12 +1437,12 @@
 
 
 <!-- ═══════════════════════════════ CONTACT ═══════════════════════════════ -->
-<section class="contact" id="contact" style="background: var(--surface); padding: 84px 0;">
+<section class="contact" id="contact" style="background: var(--surface);">
   <div class="container" style="max-width: 600px;">
     <p class="sec-label">Contact</p>
-    <h2 class="sec-title">お話ししましょう（お問い合わせ）</h2>
+    <h2 class="sec-title">お話ししましょう<br><span style="font-size: 1.4rem; font-weight: 500; color: var(--muted);">～お問い合わせ～</span></h2>
 
-    <form id="contactForm" style="display: flex; flex-direction: column; gap: 20px;">
+    <form id="contactForm" style="display: flex; flex-direction: column; gap: 14px;">
       <div style="display: flex; flex-direction: column; gap: 8px;">
         <label style="font-size: 0.85rem; font-weight: 700; color: var(--muted);">お名前 / Name</label>
         <input type="text" placeholder="キン肉 スグル" style="padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit;">
@@ -1449,12 +1450,12 @@
 
       <div style="display: flex; flex-direction: column; gap: 8px;">
         <label style="font-size: 0.85rem; font-weight: 700; color: var(--muted);">メールアドレス / Email</label>
-        <input type="email" placeholder="nairobi@example.com" style="padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit;">
+        <input type="email" placeholder="AIDRIVENSCHOOL@example.com" style="padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit;">
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 8px;">
         <label style="font-size: 0.85rem; font-weight: 700; color: var(--muted);">メッセージ / Message</label>
-        <textarea rows="5" placeholder="アフリカでの物流網について相談したいです..." style="padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; resize: vertical;"></textarea>
+        <textarea rows="5" placeholder="私は120kgベンチ上げます..." style="padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; resize: vertical;"></textarea>
       </div>
 
       <button type="button" onclick="sendFake()" style="background: var(--accent); color: #fff; padding: 16px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: opacity 0.2s;">
