@@ -761,12 +761,40 @@
     }
 
     @media (max-width: 768px) {
+      /* ── ナビ非表示 ── */
       .side-nav { display: none; }
-      .about-grid    { grid-template-columns: 1fr; gap: 32px; }
+
+      /* ── セクション余白を縮小 ── */
+      section { padding: 44px 0; }
+
+      /* ── タイトルの折り返し許可 ── */
+      .sec-title { white-space: normal; font-size: 1.6rem; margin-bottom: 20px; }
+
+      /* ── HERO ── */
+      .hero-content { left: 5%; max-width: 88%; }
+
+      /* ── ABOUT ── */
+      .about-grid    { grid-template-columns: 1fr; gap: 24px; }
+      .about-panel   { height: auto; }
+      .stat-grid     { grid-template-columns: repeat(2, 1fr); }
+
+      /* ── CAREER ── */
+      .map-svg       { max-height: 180px; }
+      .map-card      { margin-bottom: 20px; }
+
+      /* ── PRINCIPLES ── */
+      .principles-grid { grid-template-columns: 1fr; }
+
+      /* ── LIFESTYLE / MOTTO / MISSION ── */
       .ls-grid       { grid-template-columns: 1fr; }
       .motto-grid    { grid-template-columns: 1fr; }
       .mission-grid  { grid-template-columns: 1fr; }
-      .hero-content  { left: 5%; max-width: 88%; }
+
+      /* ── CONTACT フォーム ── */
+      #contact .container { padding-left: 16px; padding-right: 16px; }
+
+      /* ── コンテナ左右余白 ── */
+      .container { padding-left: 16px; padding-right: 16px; }
     }
   </style>
 </head>
