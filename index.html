@@ -180,8 +180,9 @@
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
+      gap: 48px;
+      align-items: stretch;
+      margin-top: 32px;
     }
 
     .about-text p {
@@ -197,6 +198,8 @@
       background: linear-gradient(140deg, #E0F2FE 0%, #BAE6FD 60%, #7DD3FC 100%);
       border-radius: 24px;
       padding: 36px;
+      height: 100%;
+      box-sizing: border-box;
     }
 
     .location-pill {
@@ -216,6 +219,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
+      margin-top: 20px;
     }
 
     /* ── CAREER MAP ── */
@@ -972,15 +976,24 @@
 <!-- ═══════════════════════════════ ABOUT ═══════════════════════════════ -->
 <section class="about" id="about">
   <div class="container">
+
+    <!-- タイトルはグリッド外で全幅確保 → 折り返しなし -->
+    <p class="sec-label">About</p>
+    <h2 class="sec-title" style="white-space: nowrap;">はじめまして、しんぼです。</h2>
+
+    <!-- 紹介文：全幅 -->
+    <div class="about-text">
+      <p>「上司に忖度しない」をモットーに突き進んできたら、気づけば<strong>海外生活も7年目</strong>。
+      <p>ふと我に返ると、「日本に俺の帰る場所、ないんじゃね……？」と思うように。笑</p>
+      <p>このAIスクールでは、自己投資はもちろん、それ以上に<strong>「日本に帰ったときに笑って話せる仲間」</strong>を見つけたい。</p>
+      <p>そんな不純（？）で切実な動機ですが、全力で駆け抜けます。</p>
+      <p>皆さん、仲良くしてください！</p>
+    </div>
+
+    <!-- 画像（左）＋ パネル（右）横並び -->
     <div class="about-grid">
 
-      <div class="about-text">
-        <p class="sec-label">About</p>
-        <h2 class="sec-title">はじめまして、しんぼです。</h2>
-        <p>「上司に忖度しない」をモットーに突き進んできたら、気づけば<strong>海外生活も7年目</strong>。ふと我に返ると、「日本に俺の帰る場所、ないんじゃね……？」と思うように。笑</p>
-        <p>このAIスクールでは、自己投資はもちろん、それ以上に<strong>「日本に帰ったときに笑って話せる仲間」</strong>を見つけたい。そんな不純（？）で切実な動機ですが、全力で駆け抜けます。</p>
-        <p>皆さん、仲良くしてください！</p>
-      </div>
+      <img src="africa_ilust.png" alt="Kenya Illustration" style="max-width: 100%; height: auto; border-radius: 16px; filter: drop-shadow(0 10px 20px rgba(14,165,233,0.15));">
 
       <div class="about-panel">
         <div class="location-pill">
@@ -989,16 +1002,24 @@
         </div>
         <div class="stat-grid">
           <div class="stat-cell">
-            <div class="n">7</div>
-            <div class="l">年の海外生活</div>
+            <div class="n">7<span style="font-size:1rem;">年</span></div>
+            <div class="l">の海外生活</div>
           </div>
           <div class="stat-cell">
-            <div class="n">3</div>
-            <div class="l">拠点国</div>
+            <div class="n">3<span style="font-size:1rem;">ヶ国目</span></div>
+            <div class="l">を経験中</div>
           </div>
           <div class="stat-cell">
-            <div class="n">12</div>
-            <div class="l">年物流業界に従事</div>
+            <div class="n">12<span style="font-size:1rem;">年</span></div>
+            <div class="l">物流業界に従事</div>
+          </div>
+          <div class="stat-cell" style="grid-column: span 1;">
+            <div class="n">120<span style="font-size:1rem;">杯</span></div>
+            <div class="l">1時間牛丼を盛る</div>
+          </div>
+          <div class="stat-cell" style="grid-column: span 1;">
+            <div class="n">100<span style="font-size:1rem;">kg</span></div>
+            <div class="l">ベンチプレス</div>
           </div>
         </div>
       </div>
@@ -1307,7 +1328,8 @@
         <div class="ls-icon">📚</div>
         <div class="ls-badge">Insight</div>
         <h3 class="ls-title">静（せい）</h3>
-        <p class="ls-desc">言語化、投資、読書。すごい人がやっていそうなことをやってみている。</p>
+        <p class="ls-desc">言語化、投資、読書。
+        すごい人がやっていそうなことをやってみている。</p>
       </div>
 
       <div class="ls-card">
@@ -1413,6 +1435,43 @@
 </section>
 
 
+<!-- ═══════════════════════════════ CONTACT ═══════════════════════════════ -->
+<section class="contact" id="contact" style="background: var(--surface); padding: 84px 0;">
+  <div class="container" style="max-width: 600px;">
+    <p class="sec-label">Contact</p>
+    <h2 class="sec-title">お話ししましょう（お問い合わせ）</h2>
+
+    <form id="contactForm" style="display: flex; flex-direction: column; gap: 20px;">
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <label style="font-size: 0.85rem; font-weight: 700; color: var(--muted);">お名前 / Name</label>
+        <input type="text" placeholder="キン肉 スグル" style="padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit;">
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <label style="font-size: 0.85rem; font-weight: 700; color: var(--muted);">メールアドレス / Email</label>
+        <input type="email" placeholder="nairobi@example.com" style="padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit;">
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <label style="font-size: 0.85rem; font-weight: 700; color: var(--muted);">メッセージ / Message</label>
+        <textarea rows="5" placeholder="アフリカでの物流網について相談したいです..." style="padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; resize: vertical;"></textarea>
+      </div>
+
+      <button type="button" onclick="sendFake()" style="background: var(--accent); color: #fff; padding: 16px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: opacity 0.2s;">
+        メッセージを送信する
+      </button>
+      <p style="font-size: 0.75rem; color: var(--muted); text-align: center; margin: 0;">
+        ※ このフォームはデモです。実際にはメッセージは送信されません。
+      </p>
+    </form>
+
+    <div id="formFeedback" style="display: none; margin-top: 20px; padding: 20px; background: var(--green-bg); color: var(--green); border-radius: 8px; text-align: center; font-weight: 700;">
+      <i class="fas fa-check-circle"></i> 配送完了！メッセージを受け取りました。
+    </div>
+  </div>
+</section>
+
+
 <!-- ═══════════════════════════════ SIDE NAV ═══════════════════════════════ -->
 <nav class="side-nav" id="sideNav" aria-label="Page navigation">
 
@@ -1470,6 +1529,10 @@
     <span class="side-nav-dot"></span>
     <span class="side-nav-label">Mission</span>
   </a>
+  <a class="side-nav-item" href="#contact" data-target="contact">
+    <span class="side-nav-dot"></span>
+    <span class="side-nav-label">Contact</span>
+  </a>
 </nav>
 
 <!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
@@ -1482,7 +1545,7 @@
 <script>
   (function () {
     const navItems  = document.querySelectorAll('.side-nav-item');
-    const sections  = ['about','career','principles','lifestyle','motto','talk','mission'];
+    const sections  = ['about','career','principles','lifestyle','motto','talk','mission','contact'];
     const sideNav   = document.getElementById('sideNav');
     const ship      = document.getElementById('sideNavShip');
 
@@ -1594,6 +1657,21 @@
       });
     });
   })();
+
+  /* ── フォーム送信の演出（物流の遅延をシミュレート） ── */
+  function sendFake() {
+    const form     = document.getElementById('contactForm');
+    const feedback = document.getElementById('formFeedback');
+
+    form.style.opacity       = '0.3';
+    form.style.pointerEvents = 'none';
+
+    /* 1.5秒後に「配送完了」フィードバックを表示 */
+    setTimeout(() => {
+      form.style.display     = 'none';
+      feedback.style.display = 'block';
+    }, 1500);
+  }
 </script>
 
 </body>
